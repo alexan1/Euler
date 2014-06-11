@@ -1,0 +1,7 @@
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\bin\Debug\Euler.XML
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\bin\Debug\Euler.dll
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\bin\Debug\Euler.pdb
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\bin\Debug\FSharp.Core.dll
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\bin\Debug\FSharp.Core.xml
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\obj\Debug\Euler.dll
+c:\users\alex\documents\visual studio 2013\Projects\Euler\Euler\obj\Debug\Euler.pdb
