@@ -8,9 +8,17 @@ module Euler =
     let isEven x =
         x % 2 = 0
 
+    //check if odd
+    let isOdd x =
+        not (isEven x)   
+
     //check if even bigint
     let isEvenI x =
         x % 2I = 0I
+
+     //check if odd bigint
+    let isOddI x =
+        not (isEvenI x)   
     
     //generating Fibonacci sequence
     let fibonacci() = Seq.unfold (fun state ->
@@ -61,4 +69,36 @@ module Euler =
     //check if papamert is Palindrome
     // generic x can be int or string
     let isPalindrome x =
-    x.ToString() = new string(Array.rev (x.ToString().ToCharArray()))
+        x.ToString() = new string(Array.rev (x.ToString().ToCharArray()))
+
+    //generate triangle sequence
+    let triangles() =
+        Seq.unfold (fun (acc, state) -> Some (acc, (state + acc, state + 1))) (0, 1)
+        |> Seq.skip 1
+
+     //generate triangle bigint sequence
+    let trianglesI() =
+        Seq.unfold (fun (acc, state) -> Some (acc, (state + acc, state + 1I))) (0I, 1I)
+        |> Seq.skip 1
+
+    //next Collatz number
+    let nextcollatz x =
+        if x = 1 then 0
+        else 
+            if isEven x then x / 2
+            else 3 * x + 1
+    
+    //generate Collatz sequence starting with x
+    let rec collatz x =         
+        Seq.unfold (fun state -> if (state = 0) then None else Some(state, nextcollatz state)) x
+
+    //next Collatz number bigint
+    let nextcollatzI x =
+        if x = 1I then 0I
+        else 
+            if isEvenI x then x / 2I
+            else 3I * x + 1I
+
+    //generate bigint Collatz sequence starting with x
+    let rec collatzI x =         
+        Seq.unfold (fun state -> if (state = 0I) then None else Some(state, nextcollatzI state)) x
