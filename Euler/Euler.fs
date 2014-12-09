@@ -13,12 +13,14 @@ module Euler =
         not (isEven x)   
 
     //check if even bigint
-    let isEvenI x =
-        x % 2I = 0I
+    //don't need this because BigInt has property IsEven
+//    let isEvenI x =
+//        x % 2I = 0I
 
      //check if odd bigint
-    let isOddI x =
-        not (isEvenI x)   
+     //see comment to isEvenI
+//    let isOddI x =
+//        not (isEvenI x)   
     
     //generating Fibonacci sequence
     let fibonacci() = Seq.unfold (fun state ->
@@ -29,26 +31,36 @@ module Euler =
     let fibonacciI() = Seq.unfold (fun state -> Some(fst state + snd state, (snd state, fst state + snd state))) (0I,1I)
 
     //another way to generate Fibonacci number
-    //TODO: check how it works
+    //starting with 0: [0; 1; 1; 2; ...]
     let fibonacciN (n : int) =
         let x1 = (1.0 + sqrt 5.0) /2.0
         let x2 = (1.0 - sqrt 5.0) / 2.0
-        int ((x1**(float (n - 1)) - x2**(float (n - 1))) / sqrt 5.0)
+        int ((x1**(float n) - x2**(float n)) / sqrt 5.0)    
 
     let fibonacciM() = Seq.initInfinite(fun x -> fibonacciN x)
 
     //factoral function
-    let rec factorial n =
-        match n with
-        | 0 | 1 -> 1
-        | _ -> n * factorial(n-1)
+    //not tail recursive, don't use it
+//    let rec factorial n =
+//        match n with
+//        | 0 | 1 -> 1
+//        | _ -> n * factorial(n-1)
+
+    //let factorial n = [1..n] |> List.reduce (*)
+
+    //factoral function
+    let factorial n = {1..n} |> Seq.reduce (*)
 
     //factorial bigint
-    let rec factorialI (n : bigint) =
-        match n with
-        | _ when (n = 0I) -> 1I
-        | _ when (n = 1I) -> 1I
-        | _ -> n * factorialI(n-1I)
+    let factorialI n = {1I..n} |> Seq.reduce (*)
+
+    //factorial bigint
+    //not tail recursive too
+//    let rec factorialI (n : bigint) =
+//        match n with
+//        | _ when (n = 0I) -> 1I
+//        | _ when (n = 1I) -> 1I
+//        | _ -> n * factorialI(n-1I)
 
     //get larget prime factor for int
     let largestPrimeFactor x = 
@@ -96,7 +108,7 @@ module Euler =
     let nextcollatzI x =
         if x = 1I then 0I
         else 
-            if isEvenI x then x / 2I
+            if x.IsEven then x / 2I
             else 3I * x + 1I
 
     //generate bigint Collatz sequence starting with x
