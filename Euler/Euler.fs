@@ -114,3 +114,9 @@ module Euler =
     //generate bigint Collatz sequence starting with x
     let rec collatzI x =         
         Seq.unfold (fun state -> if (state = 0I) then None else Some(state, nextcollatzI state)) x
+
+    //Greatest Common Divisor (GCD)
+    let rec gcd x y =
+        if y = 0 then x
+        else gcd y (x % y)
+            
