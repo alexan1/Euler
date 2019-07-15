@@ -39,6 +39,13 @@ module Euler =
 
     let fibonacciM() = Seq.initInfinite(fun x -> fibonacciN x)
 
+    //Fibonacci nth number
+    let rec fib n =
+        match n with
+        | 1 -> 0
+        | 2 -> 1
+        | n -> fib(n-1) + fib(n-2)
+
     //factoral function
     //not tail recursive, don't use it
 //    let rec factorial n =
