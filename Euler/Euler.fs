@@ -126,4 +126,24 @@ module Euler =
     let rec gcd x y =
         if y = 0 then x
         else gcd y (x % y)
+
+    // Generate n rows of Pascal's Triangle
+    //let pascal n = 
+    //  let rec pas L n =
+    //    if n = 0 then L
+    //    else
+    //      let A::t = L in
+    //      pas (((1::[for i in 1..(List.length A-1) -> A.[i-1]+A.[i]])@[1])::L) (n-1)
+    //  pas [[1;1]] n
+
+    // Generate n rows of Pascal's Triangle
+    let pascal2 n = 
+        let rec nextrow row y ys =
+            match row with
+            | x::xs -> nextrow xs x ((x + y)::ys)
+            | [] -> 1::ys
+        let rec addrow i z zs = 
+            if i <= 1 then z::zs
+            else addrow (i-1) (nextrow z 0 []) (z::zs)
+        addrow n [1] [] 
             
